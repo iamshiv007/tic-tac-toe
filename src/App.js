@@ -5,11 +5,14 @@ const App = () => {
   const [value, setValue] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [winer, setWiner] = useState();
+  const [playCount, setPlayCount] = useState(0);
 
   const playGame = (e) => {
     if (!e.target.innerText && !gameOver) {
       e.target.innerText = value;
       setValue(value === 0 ? "❌" : 0);
+
+      setPlayCount(playCount + 1);
 
       const ones = document.getElementsByClassName("one");
       const twos = document.getElementsByClassName("two");
@@ -28,7 +31,6 @@ const App = () => {
           ones[1].innerText === "❌" &&
           ones[2].innerText === "❌")
       ) {
-        console.log("Game Over", "one");
         setGameOver(true);
         setWiner(ones[0].innerText);
       } else if (
@@ -39,7 +41,6 @@ const App = () => {
           twos[1].innerText === "❌" &&
           twos[2].innerText === "❌")
       ) {
-        console.log("Game Over", "two");
         setGameOver(true);
         setWiner(twos[0].innerText);
       } else if (
@@ -50,7 +51,6 @@ const App = () => {
           threes[1].innerText === "❌" &&
           threes[2].innerText === "❌")
       ) {
-        console.log("Game Over", "three");
         setGameOver(true);
         setWiner(threes[0].innerText);
       } else if (
@@ -72,7 +72,6 @@ const App = () => {
           fives[1].innerText === "❌" &&
           fives[2].innerText === "❌")
       ) {
-        console.log("Game Over", "five");
         setGameOver(true);
         setWiner(fives[0].innerText);
       } else if (
@@ -83,7 +82,6 @@ const App = () => {
           sixs[1].innerText === "❌" &&
           sixs[2].innerText === "❌")
       ) {
-        console.log("Game Over", "six");
         setGameOver(true);
         setWiner(sixs[0].innerText);
       } else if (
@@ -94,7 +92,6 @@ const App = () => {
           sevens[1].innerText === "❌" &&
           sevens[2].innerText === "❌")
       ) {
-        console.log("Game Over", "seven");
         setGameOver(true);
         setWiner(sevens[0].innerText);
       } else if (
@@ -105,7 +102,6 @@ const App = () => {
           eights[1].innerText === "❌" &&
           eights[2].innerText === "❌")
       ) {
-        console.log("Game Over", "eight");
         setGameOver(true);
         setWiner(eights[0].innerText);
       }
@@ -116,6 +112,7 @@ const App = () => {
     setWiner();
     setGameOver(false);
     setValue(0);
+    setPlayCount(0);
 
     const miniBoxes = document.getElementsByClassName("miniBox");
 
@@ -133,11 +130,15 @@ const App = () => {
         <ThirdColumn playGame={playGame} />
       </div>
 
-      {gameOver && (
+      {(gameOver || playCount === 9) && (
         <div className="resultBox">
-          <div>
-            <strong> {winer}</strong> is won the Game
-          </div>
+          {playCount === 9 && !winer ? (
+            <div>Game Draw</div>
+          ) : (
+            <div>
+              <strong> {winer}</strong> is won the Game
+            </div>
+          )}
           <button onClick={restartGame}>Restart</button>
         </div>
       )}
