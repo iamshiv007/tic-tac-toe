@@ -112,6 +112,18 @@ const App = () => {
     }
   };
 
+  const restartGame = () => {
+    setWiner();
+    setGameOver(false);
+    setValue(0);
+
+    const miniBoxes = document.getElementsByClassName("miniBox");
+
+    for (let i = 0; i < 9; i++) {
+      miniBoxes[i].innerText = null;
+    }
+  };
+
   return (
     <>
       <div className="header">Tic-Tac-toe</div>
@@ -121,10 +133,14 @@ const App = () => {
         <ThirdColumn playGame={playGame} />
       </div>
 
-      {gameOver && <div>
-        <div>{winer} is won the Game</div>
-        <button>Restart</button>
-      </div>}
+      {gameOver && (
+        <div className="resultBox">
+          <div>
+            <strong> {winer}</strong> is won the Game
+          </div>
+          <button onClick={restartGame}>Restart</button>
+        </div>
+      )}
     </>
   );
 };
@@ -134,9 +150,9 @@ export default App;
 const FirstColumn = ({ playGame }) => {
   return (
     <div>
-      <div onClick={playGame} className="one four seven"></div>
-      <div onClick={playGame} className="one five"></div>
-      <div onClick={playGame} className="one six eight"></div>
+      <div onClick={playGame} className="miniBox one four seven"></div>
+      <div onClick={playGame} className="miniBox one five"></div>
+      <div onClick={playGame} className="miniBox one six eight"></div>
     </div>
   );
 };
@@ -144,9 +160,9 @@ const FirstColumn = ({ playGame }) => {
 const SecondColumn = ({ playGame }) => {
   return (
     <div>
-      <div onClick={playGame} className="two four"></div>
-      <div onClick={playGame} className="two five seven eight"></div>
-      <div onClick={playGame} className="two six"></div>
+      <div onClick={playGame} className="miniBox two four"></div>
+      <div onClick={playGame} className="miniBox two five seven eight"></div>
+      <div onClick={playGame} className="miniBox two six"></div>
     </div>
   );
 };
@@ -154,9 +170,9 @@ const SecondColumn = ({ playGame }) => {
 const ThirdColumn = ({ playGame }) => {
   return (
     <div>
-      <div onClick={playGame} className="three four eight"></div>
-      <div onClick={playGame} className="three five"></div>
-      <div onClick={playGame} className="three six seven"></div>
+      <div onClick={playGame} className="miniBox three four eight"></div>
+      <div onClick={playGame} className="miniBox three five"></div>
+      <div onClick={playGame} className="miniBox three six seven"></div>
     </div>
   );
 };
