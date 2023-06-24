@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 
 const App = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("🟢");
   const [gameOver, setGameOver] = useState(false);
   const [winer, setWiner] = useState();
   const [playCount, setPlayCount] = useState(0);
@@ -10,7 +10,7 @@ const App = () => {
   const playGame = (e) => {
     if (!e.target.innerText && !gameOver) {
       e.target.innerText = value;
-      setValue(value === 0 ? "❌" : 0);
+      setValue(value === "🟢" ? "❌" : "🟢");
 
       setPlayCount(playCount + 1);
 
@@ -24,9 +24,9 @@ const App = () => {
       const eights = document.getElementsByClassName("eight");
 
       if (
-        (ones[0].innerText === "0" &&
-          ones[1].innerText === "0" &&
-          ones[2].innerText === "0") ||
+        (ones[0].innerText === "🟢" &&
+          ones[1].innerText === "🟢" &&
+          ones[2].innerText === "🟢") ||
         (ones[0].innerText === "❌" &&
           ones[1].innerText === "❌" &&
           ones[2].innerText === "❌")
@@ -34,9 +34,9 @@ const App = () => {
         setGameOver(true);
         setWiner(ones[0].innerText);
       } else if (
-        (twos[0].innerText === "0" &&
-          twos[1].innerText === "0" &&
-          twos[2].innerText === "0") ||
+        (twos[0].innerText === "🟢" &&
+          twos[1].innerText === "🟢" &&
+          twos[2].innerText === "🟢") ||
         (twos[0].innerText === "❌" &&
           twos[1].innerText === "❌" &&
           twos[2].innerText === "❌")
@@ -44,9 +44,9 @@ const App = () => {
         setGameOver(true);
         setWiner(twos[0].innerText);
       } else if (
-        (threes[0].innerText === "0" &&
-          threes[1].innerText === "0" &&
-          threes[2].innerText === "0") ||
+        (threes[0].innerText === "🟢" &&
+          threes[1].innerText === "🟢" &&
+          threes[2].innerText === "🟢") ||
         (threes[0].innerText === "❌" &&
           threes[1].innerText === "❌" &&
           threes[2].innerText === "❌")
@@ -54,9 +54,9 @@ const App = () => {
         setGameOver(true);
         setWiner(threes[0].innerText);
       } else if (
-        (fours[0].innerText === "0" &&
-          fours[1].innerText === "0" &&
-          fours[2].innerText === "0") ||
+        (fours[0].innerText === "🟢" &&
+          fours[1].innerText === "🟢" &&
+          fours[2].innerText === "🟢") ||
         (fours[0].innerText === "❌" &&
           fours[1].innerText === "❌" &&
           fours[2].innerText === "❌")
@@ -65,9 +65,9 @@ const App = () => {
         setGameOver(true);
         setWiner(fours[0].innerText);
       } else if (
-        (fives[0].innerText === "0" &&
-          fives[1].innerText === "0" &&
-          fives[2].innerText === "0") ||
+        (fives[0].innerText === "🟢" &&
+          fives[1].innerText === "🟢" &&
+          fives[2].innerText === "🟢") ||
         (fives[0].innerText === "❌" &&
           fives[1].innerText === "❌" &&
           fives[2].innerText === "❌")
@@ -75,9 +75,9 @@ const App = () => {
         setGameOver(true);
         setWiner(fives[0].innerText);
       } else if (
-        (sixs[0].innerText === "0" &&
-          sixs[1].innerText === "0" &&
-          sixs[2].innerText === "0") ||
+        (sixs[0].innerText === "🟢" &&
+          sixs[1].innerText === "🟢" &&
+          sixs[2].innerText === "🟢") ||
         (sixs[0].innerText === "❌" &&
           sixs[1].innerText === "❌" &&
           sixs[2].innerText === "❌")
@@ -85,9 +85,9 @@ const App = () => {
         setGameOver(true);
         setWiner(sixs[0].innerText);
       } else if (
-        (sevens[0].innerText === "0" &&
-          sevens[1].innerText === "0" &&
-          sevens[2].innerText === "0") ||
+        (sevens[0].innerText === "🟢" &&
+          sevens[1].innerText === "🟢" &&
+          sevens[2].innerText === "🟢") ||
         (sevens[0].innerText === "❌" &&
           sevens[1].innerText === "❌" &&
           sevens[2].innerText === "❌")
@@ -95,9 +95,9 @@ const App = () => {
         setGameOver(true);
         setWiner(sevens[0].innerText);
       } else if (
-        (eights[0].innerText === "0" &&
-          eights[1].innerText === "0" &&
-          eights[2].innerText === "0") ||
+        (eights[0].innerText === "🟢" &&
+          eights[1].innerText === "🟢" &&
+          eights[2].innerText === "🟢") ||
         (eights[0].innerText === "❌" &&
           eights[1].innerText === "❌" &&
           eights[2].innerText === "❌")
@@ -111,7 +111,7 @@ const App = () => {
   const restartGame = () => {
     setWiner();
     setGameOver(false);
-    setValue(0);
+    setValue("🟢");
     setPlayCount(0);
 
     const miniBoxes = document.getElementsByClassName("miniBox");
@@ -123,7 +123,7 @@ const App = () => {
 
   return (
     <>
-      <div className="header">Tic-Tac-toe</div>
+      <p className="header">Tic-Tac-toe</p>
       <div className="mainContainer">
         <FirstColumn playGame={playGame} />
         <SecondColumn playGame={playGame} />
